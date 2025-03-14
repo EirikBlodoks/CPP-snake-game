@@ -6,6 +6,7 @@
 #include "Exceptions.h"
 #include "PauseGUI.h"
 
+
 namespace TDT4102 {
     class Game : public AnimationWindow {
     public:
@@ -26,6 +27,7 @@ namespace TDT4102 {
         int highScore = 0;
         bool gameOver = false;
         bool paused = false;
+        int difficulty;
         
     };
 }

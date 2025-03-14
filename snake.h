@@ -22,6 +22,6 @@ namespace TDT4102 {
         std::vector<Point> body;
         Direction currentDir;
         bool shouldGrow = false;
-        int map=0;
+        int map;
     };
 }

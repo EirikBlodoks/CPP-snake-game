@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <thread>
 #include <windows.h>
+#include <iostream>
 
 namespace TDT4102 {
     Game::Game() //start av spill: lager vindu, plasserer slangen, henter highscore, genererer en tilfeldig matbit, og setter bakgrunnsfarge
@@ -9,6 +10,7 @@ namespace TDT4102 {
         highScore = FileHandler::loadHighScore();
         food.respawn(snake.getBody());
         setBackgroundColor(Color::light_gray);
+        difficulty=100;
     }
 
     void Game::run() {
@@ -26,7 +28,8 @@ namespace TDT4102 {
             }
             
             next_frame();
-            Sleep(100);//denne kan du tweake for å påvirke vanskelighetsgraden, jo lavere tall, jo fortere går det.
+            Sleep(difficulty);//denne kan du tweake for å påvirke vanskelighetsgraden, jo lavere tall, jo fortere går det.
+            // std::cout<<difficulty<<std::endl;
 }
         
         if (score > highScore) {
@@ -59,7 +62,13 @@ namespace TDT4102 {
         if (pauseGUI.handleContinue(*this)){paused=false;}//når man trykker continue skrur man av pause
         if (pauseGUI.handleQuit(*this)){gameOver=true; return;} //når man trykker quit avslutter man spillet
         if (pauseGUI.handleMap(*this)){if (snake.getMap()==2){snake.setMap(0);}
-                                        else{snake.setMap(snake.getMap()+1);}}
+                                        else{snake.setMap(snake.getMap()+1);}} //Endrer hvilket map man er i
+        if (pauseGUI.handleDifficulty(*this)){
+            if (difficulty ==100){difficulty =50;}
+            else if (difficulty ==50){difficulty =300;}
+            else if (difficulty ==300){difficulty =200;}
+            else if (difficulty ==200){difficulty =100;}
+        }
         if (paused){pauseGUI.draw(*this);}
     }
 

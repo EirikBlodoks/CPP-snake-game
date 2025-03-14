@@ -9,14 +9,19 @@ PauseGUI::PauseGUI(int windowWidth, int windowHeight): snake({20, 15}) {
 
 void PauseGUI::draw(TDT4102::AnimationWindow& window) {
     window.draw_rectangle({menuX, menuY}, menuWidth, menuHeight, TDT4102::Color::white);// Tegn en boks som menyen er i
-    window.draw_text({menuX + 50, menuY + 30}, "Paused", TDT4102::Color::black, 30); // Skriv Paused øverst i menyen
+    window.draw_text({menuX + 90, menuY + 30}, "Paused", TDT4102::Color::black, 30); // Skriv Paused øverst i menyen
+
     window.draw_rectangle({menuX + 50, menuY + 80}, 200, 50, TDT4102::Color::green);
-    window.draw_text({menuX + 70, menuY + 95}, "Continue", TDT4102::Color::white, 20);// Lag Continueknapp
+    window.draw_text({menuX + 90, menuY + 95}, "Continue", TDT4102::Color::white, 20);// Lag Continueknapp
+
     window.draw_rectangle({menuX + 50, menuY + 140}, 200, 50, TDT4102::Color::red);
     window.draw_text({menuX + 90, menuY + 155}, "Quit", TDT4102::Color::white, 20);//Lag quit knapp
+
     window.draw_rectangle({menuX + 50, menuY + 195}, 200, 50, TDT4102::Color::dim_grey);
-    window.draw_text({menuX + 90, menuY + 210}, "Choose Map: ", TDT4102::Color::white, 20);//Lag map knapp, hvert trykk skal endre map
-    window.draw_text({menuX + 210, menuY + 210}, std::to_string(snake.getMap()), TDT4102::Color::white, 20);
+    window.draw_text({menuX + 90, menuY + 210}, "Switch Map", TDT4102::Color::white, 20);//Lag map knapp, hvert trykk skal endre map
+
+    window.draw_rectangle({menuX + 50, menuY + 250}, 200, 50, TDT4102::Color::dim_grey);
+    window.draw_text({menuX + 90, menuY + 265}, "Change Difficulty", TDT4102::Color::white, 20);
 }
 
 bool PauseGUI::handleContinue(TDT4102::AnimationWindow& window) {
@@ -55,7 +60,17 @@ bool PauseGUI::handleMap(TDT4102::AnimationWindow& window){
     }
     return false;
 }
+bool PauseGUI::handleDifficulty(TDT4102::AnimationWindow& window){
 
+    TDT4102::Point mousePos =  getMouseCoordinates(window);
+    if (window.is_left_mouse_button_down()){
+        if (mousePos.x >= menuX + 50 && mousePos.x <= menuX + 250 &&
+            mousePos.y >= menuY + 260 && mousePos.y <= menuY + 310){
+                return true;
+            }
+    }
+    return false;
+}
 
 TDT4102::Point PauseGUI::getMouseCoordinates(TDT4102::AnimationWindow& window) const {
     return window.get_mouse_coordinates();

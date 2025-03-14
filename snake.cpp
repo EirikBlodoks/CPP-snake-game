@@ -3,6 +3,7 @@
 namespace TDT4102 {
     Snake::Snake(Point startPos) : currentDir(Direction::RIGHT) {//Direction er ett egetdefinert enum
         body.push_back(startPos);
+        map=0;
     }
 
     void Snake::changeDirection(Direction newDir) {

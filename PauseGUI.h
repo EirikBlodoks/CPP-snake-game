@@ -12,12 +12,13 @@ public:
     bool handleContinue(TDT4102::AnimationWindow& window);
     bool handleQuit(TDT4102::AnimationWindow& window);
     bool handleMap(TDT4102::AnimationWindow& window);
+    bool handleDifficulty(TDT4102::AnimationWindow& window);
 
 private:
     int windowWidth;
     int windowHeight;
     int menuWidth = 300;
-    int menuHeight = 300;
+    int menuHeight = 350;
     int menuX;
     int menuY;
 
