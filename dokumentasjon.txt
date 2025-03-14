@@ -1,0 +1,28 @@
+Overall Structure:
+Game Class (inherits from AnimationWindow) - Manages game loop, drawing, and input
+Snake Class - Handles snake logic and movement
+Food Class - Manages food generation
+FileHandler Class - Handles high score saving/loading
+Custom Exceptions - For error handling
+Main File - Entry point
+
+File Structure:
+Snake.h/Snake.cpp
+Food.h/Food.cpp
+Game.h/Game.cpp
+FileHandler.h/FileHandler.cpp
+Exceptions.h
+main.cpp
+
+
+
+Compilation & Requirements Met:
+File Handling: FileHandler class saves/loads high score
+
+Inheritance: Game inherits from AnimationWindow
+
+Exception Handling: Two custom exceptions (FileIOException, GameException) with try-catch blocks
+
+GUI Usage: All drawing through AnimationWindow methods
+
+Structure: Proper class separation and header/source organization
